@@ -1,6 +1,8 @@
 rm(list=ls())
 
-#D�termination de l'influence de la temp�rature : 
+#Determination de l'influence de la temperature : 
 
-d1=read.table("temp.txt",h=T)
-plot(d1)
+data=read.table("temp.txt",h=T)
+sunflowerplot(data$T,data$Act,main="Activité de l'enzyme en fonction
+     de la température",xlab="Température (°C)",ylab="Activité")
+# Température optimale : environ 35 °C
