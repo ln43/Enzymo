@@ -10,7 +10,6 @@ library(nlstools)
 #Representations et determination des params
 d1=read.table("ATC.txt",h=T)
 d1$"S"=d1$S*10^(-4)
-#d1=d1[1:21,] #Probable erreur sur les deux dernieres concentrations, à vérifier.
 sunflowerplot(d1, xlab = "[S]", main = "V = f([S])") # V = f[S]
 invv = 1/d1$v
 invs = 1/d1$S
@@ -47,9 +46,9 @@ d2$"S"=d2$S*10^(-4)
 sunflowerplot(d2, xlab = "[S]", main = "V = f([S])") # V = f[S]
 invv = 1/d2$v
 invs = 1/d2$S
-sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S])") # Lineweaver et Burk
+sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S]), Lineweaver et Burk") # Lineweaver et Burk
 sv = d2$S/d2$v
-sunflowerplot(d2$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S])") # Hanes
+sunflowerplot(d2$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S]), Hanes") # Hanes
 
 mod2<-michaelis
 vi2<-list(Vmax=1.5,Km=1e-04)
@@ -80,27 +79,6 @@ d3$"S"=d3$S*10^(-4)
 sunflowerplot(d3, xlab = "[S]", main = "V = f([S])") # V = f[S]
 invv = 1/d3$v
 invs = 1/d3$S
-sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S])") # Lineweaver et Burk
+sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S]), Lineweaver et Burk") # Lineweaver et Burk
 sv = d3$S/d3$v
-sunflowerplot(d3$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S])") # Hanes
-
-mod3<-michaelis
-vi3<-list(Vmax=1.5,Km=1e-04)
-aj3<-nls(mod3,d3,vi3)
-plotfit(aj3,smooth=T) 
-overview(aj3)
-
-#Regions de confiance
-beale=nlsConfRegions(aj3)
-plot(beale)
-
-#residus
-resbar=nlsResiduals(aj3)
-plot(resbar) 
-
-shapiro.test(residuals(aj3))
-
-#Contour de la Somme des Carres des ecarts residuels 
-# (rouge : region de confiance selon Beale)
-contour3=nlsContourRSS(aj3,lseq=50)
-plot(contour3,nlev=10)
+sunflowerplot(d3$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S]), Hanes") # Hanes
