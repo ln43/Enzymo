@@ -10,7 +10,7 @@ library(nlstools)
 #Representations et determination des params
 d1=read.table("ATC.txt",h=T)
 d1$"S"=d1$S*10^(-4)
-d1=d1[1:21,] #Probable erreur sur les deux dernieres concentrations, à vérifier.
+#d1=d1[1:21,] #Probable erreur sur les deux dernieres concentrations, à vérifier.
 sunflowerplot(d1, xlab = "[S]", main = "V = f([S])") # V = f[S]
 invv = 1/d1$v
 invs = 1/d1$S
