@@ -2,24 +2,24 @@ rm(list=ls())
 
 library(nlstools)
 
-#D?termination des param?tres cin?tiques avec 3 substrats de l'ACE : 
-# Mod?le de Michaelis-Menten
+#Détermination des paramètres cinétiques avec 3 substrats de l'ACE : 
+# Modèle de Michaelis-Menten
 
 
 #ATC
 #Representations et determination des params
 d1=read.table("ATC.txt",h=T)
 d1$"S"=d1$S*10^(-4)
-d1=d1[1:21,] #Probable erreur sur les deux dernieres concentrations, ? v?rifier.
+d1=d1[1:21,] #Probable erreur sur les deux dernieres concentrations, à vérifier.
 sunflowerplot(d1, xlab = "[S]", main = "V = f([S])") # V = f[S]
 invv = 1/d1$v
 invs = 1/d1$S
-sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S])") # Lineweaver et Burk
+sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S]) , Lineweaver et Burk") # Lineweaver et Burk
 sv = d1$S/d1$v
-sunflowerplot(d1$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S])") # Hanes
+sunflowerplot(d1$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S]) , Hanes") # Hanes
 
 mod1<-michaelis
-vi1<-list(Vmax=1.5,Km=1e-04)
+vi1<-list(Vmax=600,Km=1e-04)
 aj1<-nls(mod1,d1,vi1)
 plotfit(aj1,smooth=T) 
 overview(aj1)
@@ -30,9 +30,9 @@ plot(beale)
 
 #residus
 resbar=nlsResiduals(aj1)
-plot(resbar) 
+plot(resbar)
 
-shapiro.test(residuals(aj1))
+shapiro.test(residuals(aj1))#p-value <0.05!
 
 #Contour de la Somme des Carres des ecarts residuels 
 # (rouge : region de confiance selon Beale)
@@ -74,7 +74,7 @@ plot(contour2,nlev=10)
 
 ##############################
 
-#BTC --> ???
+#BTC
 d3=read.table("BTC.txt",h=T)
 d3$"S"=d3$S*10^(-4)
 sunflowerplot(d3, xlab = "[S]", main = "V = f([S])") # V = f[S]
