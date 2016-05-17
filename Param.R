@@ -14,8 +14,12 @@ sunflowerplot(d1, xlab = "[S]", main = "V = f([S])") # V = f[S]
 invv = 1/d1$v
 invs = 1/d1$S
 sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S])") # Lineweaver et Burk
+summary(lm(invv~invs))
+abline(lm(invv~invs),col=2)
 sv = d1$S/d1$v
 sunflowerplot(d1$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S])") # Hanes
+summary(lm(sv~d1$"S"))
+abline(lm(sv~d1$"S"),col=2)
 
 mod1<-michaelis
 vi1<-list(Vmax=600,Km=1e-04)
@@ -47,8 +51,13 @@ sunflowerplot(d2, xlab = "[S]", main = "V = f([S])") # V = f[S]
 invv = 1/d2$v
 invs = 1/d2$S
 sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S])") # Lineweaver et Burk
+summary(lm(invv~invs))
+abline(lm(invv~invs),col=2)
 sv = d2$S/d2$v
 sunflowerplot(d2$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S])") # Hanes
+summary(lm(sv~d2$"S"))
+abline(lm(sv~d2$"S"),col=2)
+
 
 mod2<-michaelis
 vi2<-list(Vmax=300,Km=1e-04)
@@ -80,5 +89,9 @@ sunflowerplot(d3, xlab = "[S]", main = "V = f([S])") # V = f[S]
 invv = 1/d3$v
 invs = 1/d3$S
 sunflowerplot(invs,invv,xlab="1/[S]",ylab="1/V",main="1/V = f(1/[S])") # Lineweaver et Burk
+summary(lm(invv~invs))
+abline(lm(invv~invs),col=2)
 sv = d3$S/d3$v
 sunflowerplot(d3$S,sv,xlab="[S]",ylab="[S]/V",main="[S]/V = f([S])") # Hanes
+summary(lm(sv~d3$"S"))
+abline(lm(sv~d3$"S"),col=2)
